@@ -1677,13 +1677,17 @@ await saveDoc('bookings', bookings);
     }
 
     function editStaff(id) {
-      const target = staffList.find(s => s.id === id);
-      if (target) {
-        document.getElementById('staffId').value = target.id;
-        document.getElementById('newStaffName').value = target.name;
-        document.getElementById('addStaffForm').classList.remove('hidden');
-      }
-    }
+  const target = staffList.find(s => s.id === id);
+  if (target) {
+    document.getElementById('staffId').value = target.id;
+    const input = document.getElementById('newStaffName');
+    input.value = target.name;
+    const form = document.getElementById('addStaffForm');
+    form.classList.remove('hidden');
+    form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    input.focus();
+  }
+}
 
     async function deleteStaff(id) {
       if (confirm('Padam staff ini dari senarai?')) {
